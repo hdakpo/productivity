@@ -1,0 +1,21 @@
+year <- sub("-.*", "", meta$Date)
+vers <- sprintf("R package version %s", meta$Version)
+
+bibentry(bibtype = "Manual",
+   title = "productivity: Indices of Productivity and Profitability Using Data Envelopment Analysis (DEA)",
+   author = personList(as.person("K Hervé Dakpo"),
+            as.person("Yann Desjeux"),
+            as.person("Laure Latruffe")),
+   year = year,
+   note = vers,
+   url = "https://CRAN.R-project.org/package=productivity/",
+   
+   textVersion = paste0("Dakpo KH, Desjeux Y and Latruffe L (", year, "). ",
+            "productivity: Indices of Productivity and Profitability Using Data Envelopment Analysis (DEA). ",
+            vers,
+            ", URL: https://CRAN.R-project.org/package=productivity/."),
+    
+    mheader = "To cite the 'productivity' package in publications please use:",
+   
+    mfooter = paste("See also", sQuote("citation()"), "for citing R.", sep = " ")
+)

@@ -1,0 +1,17 @@
+export(fareprim, fisher, hicksmoorsteen, laspeyres, lowe, malm, paasche, Levels, Changes, Shadowp)
+
+S3method("print", "FarePrimont")
+S3method("print", "Fisher")
+S3method("print", "HicksMoorsteen")
+S3method("print", "Laspeyres")
+S3method("print", "Lowe")
+S3method("print", "Malmquist")
+S3method("print", "Paasche")
+
+importFrom("lpSolveAPI", "add.column", "add.constraint", "get.objective", "get.variables", "lp.control", "make.lp", "set.bounds", "set.column", "set.constr.type", "set.objfn", "set.rhs", "set.row")
+importFrom("doParallel", "registerDoParallel", "stopImplicitCluster")
+importFrom("parallel", "detectCores")
+importFrom("foreach", "foreach", "%dopar%", "registerDoSEQ")
+importFrom("methods", "is")
+importFrom("utils", "globalVariables", "flush.console")
+importFrom("iterators", "iter", "nextElem")
