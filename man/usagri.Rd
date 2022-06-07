@@ -19,8 +19,8 @@ US$1996.}
 (reference is 1 = Alabama 1996).}
 \item{q.livestock}{Livestock and animal products' quantity, in thousand
 US$1996.}
-\item{p.crop}{Crops' relative price (reference is 1 = Alabama 1996).}
-\item{q.crop}{Crops' quantity, in thousand US$1996.}
+\item{p.crops}{Crops' relative price (reference is 1 = Alabama 1996).}
+\item{q.crops}{Crops' quantity, in thousand US$1996.}
 \item{p.otherout}{Other farm-related productions' relative price
 (reference is 1 = Alabama 1996).}
 \item{q.otherout}{Other farm-related productions' quantity, in thousand
