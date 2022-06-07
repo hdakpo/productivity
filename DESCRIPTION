@@ -1,42 +1,49 @@
 Package: productivity
-Version: 1.1.0
-Date: 2018-03-28
 Title: Indices of Productivity Using Data Envelopment Analysis (DEA)
-Authors@R: c(
-  person("K Hervé", "Dakpo", role = "aut"),
-  person("Yann", "Desjeux", , "yann.desjeux@inra.fr", role = c("aut","cre")),
-  person("Laure", "Latruffe", role = "aut"))
-Maintainer: Yann Desjeux <yann.desjeux@inra.fr>
-Description: 
-  Levels and changes of productivity and profitability are measured with various indices.
-  The package contains the multiplicatively complete Färe-Primont, Fisher, Hicks-Moorsteen, 
-  Laspeyres, Lowe, and Paasche indices, as well as the classic Malmquist productivity index.
-  Färe-Primont and Lowe indices verify the transitivity property and can therefore be used for 
-  multilateral or multitemporal comparison.
-  Fisher, Hicks-Moorsteen, Laspeyres, Malmquist, and Paasche indices are not transitive and are 
-  only to be used for binary comparison.
-  All indices can also be decomposed into different components, providing insightful information 
-  on the sources of productivity and profitability changes.
-  In the use of Malmquist productivity index, the technological change index can be further 
-  decomposed into bias technological change components.
-  The package also allows to prohibit technological regression (negative technological change). In 
-  the case of the Fisher, Hicks-Moorsteen, Laspeyres, Paasche and the transitive Färe-Primont 
+Version: 1.1.0
+Authors@R: 
+    c(
+   person("K Hervé", "Dakpo", email = "k-herve.dakpo@inrae.fr", role = c("aut", "cre")),
+   person("Yann", "Desjeux", role = "aut"),
+   person("Laure", "Latruffe", role = "aut"), 
+   person("Stefan", "Wimmer", role = "ctb"))
+Description: Levels and changes of productivity and profitability are measured 
+  with various indices. The package contains Färe-Primont, Fisher, 
+  Hicks-Moorsteen, Laspeyres, Lowe, and Paasche indices, as well as the classic 
+  Malmquist productivity index. Färe-Primont and Lowe indices satisfy the 
+  transitivity property and can therefore be easily used for multilateral or 
+  multitemporal comparison. Fisher, Hicks-Moorsteen, Laspeyres, Malmquist, and
+  Paasche indices are not transitive. All indices can also be decomposed into 
+  different components, providing insightful information on the sources of 
+  productivity and profitability changes. In the case of Malmquist productivity 
+  index, the technological change index can be further decomposed into bias 
+  technological change components. The package also allows to prohibit 
+  technological regression (negative technological change). In the case of the 
+  Fisher, Hicks-Moorsteen, Laspeyres, Paasche and the transitive Färe-Primont 
   and Lowe indices, it is furthermore possible to rule out technological change. 
-  Deflated shadow prices can also be obtained. Besides, the package allows parallel computing as 
-  an option, depending on the user's computer configuration. 
-  All computations are carried out with the nonparametric Data Envelopment Analysis (DEA), and 
-  several assumptions regarding returns to scale are available.
-  All DEA linear programs are implemented using 'lp_solve'.
-Depends: R (>= 2.15.3)
-BugReports: https://r-forge.r-project.org/tracker/?group_id=2245
-Imports: lpSolveAPI, doParallel, foreach, iterators, methods
-License: GPL-3
+  Deflated shadow prices can also be obtained. Besides, the package allows 
+  parallel computing as an option, depending on the user's computer 
+  configuration. All computations are carried out with the nonparametric 
+  Data Envelopment Analysis (DEA), and several assumptions regarding returns to 
+  scale are available. All DEA linear programs are implemented using 'lp_solve'.
+License: GPL (>= 3)
 Encoding: UTF-8
-LazyData: true
-NeedsCompilation: no
-Packaged: 2018-03-28 08:23:07 UTC; ydesjeux
-Author: K Hervé Dakpo [aut],
-  Yann Desjeux [aut, cre],
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.0
+Imports: 
+    doFuture,
+    doParallel,
+    foreach,
+    iterators,
+    lpSolveAPI,
+    methods
+URL: https://github.com/hdakpo/productivity
+BugReports: https://github.com/hdakpo/productivity/issues
+Maintainer: K Hervé Dakpo <herve.dakpo@inrae.fr>
+Author: K Hervé Dakpo [aut, cre],
+  Yann Desjeux [aut],
   Laure Latruffe [aut]
-Repository: CRAN
-Date/Publication: 2018-03-28 08:59:06 UTC
+  Stefan Wimmer [ctb]
+Depends: 
+    R (>= 2.15.3)
+LazyData: true

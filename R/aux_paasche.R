@@ -51,7 +51,7 @@ paa.1 <- function(data, step1, ano, year.vec, tech.reg, rts, orientation, parall
   } else {
     t(as.matrix(data[data[, step1$time.var] == year.vec[ano - 1], step1$w.vars]))
   }
-  res2 <- foreach(dmu = 1:length(data[data[, step1$time.var] == year.vec[ano], step1$id.var]), .combine = rbind, 
+  res2 <- foreach(dmu = 1:length(data[data[, step1$time.var] == year.vec[ano], step1$id.var]), .combine = rbind,
     .packages = c("lpSolveAPI")) %dopar% {
       if (nrow(data) > 99 & parallel == FALSE & ((ano-1)*nrow(data[data[, step1$time.var] == year.vec[ano], ])+dmu) %in% itt) {
         cat(nextElem(it))
@@ -64,11 +64,11 @@ paa.1 <- function(data, step1, ano, year.vec, tech.reg, rts, orientation, parall
     AO <- Qt
     AI <- Xt
     TFP <- AO/AI
-    MP <- D.tfp(XOBS = X1[, dmu], YOBS = Y1[, dmu], XREF = XREF1, YREF = YREF1, PRICESO = P1[, dmu], PRICESI = W1[, 
+    MP <- D.tfp(XOBS = X1[, dmu], YOBS = Y1[, dmu], XREF = XREF1, YREF = YREF1, PRICESO = P1[, dmu], PRICESI = W1[,
       dmu], rts)
     TFPE <- TFP/MP
     TFP2 <- Qs/Xs
-    MP2 <- D.tfp(XOBS = X2[, dmu], YOBS = Y2[, dmu], XREF = XREF2, YREF = YREF2, PRICESO = P1[, dmu], PRICESI = W1[, 
+    MP2 <- D.tfp(XOBS = X2[, dmu], YOBS = Y2[, dmu], XREF = XREF2, YREF = YREF2, PRICESO = P1[, dmu], PRICESI = W1[,
       dmu], rts)
     TFPE2 <- TFP2/MP2
     if (shadow == TRUE) {
@@ -97,9 +97,9 @@ paa.1 <- function(data, step1, ano, year.vec, tech.reg, rts, orientation, parall
       ROSE2 <- ((Qs/(teseme.O2["OTE2"] * teseme.O2["RAE2"]))/Xs)/MP2
       OSME2 <- teseme.O2["RAE2"] * ROSE2
       RME2 <- TFPE2/teseme.O2["OTE2"]/teseme.O2["OSE2"]
-      res1 <- c(REV = REV, COST = COST, PROF = PROF, P = P, W = W, TT = TT, AO = AO, AI = AI, 
-                TFP = TFP, MP = MP, TFPE = TFPE,  teseme.O, ROSE = unname(ROSE), OSME = unname(OSME), RME = unname(RME), 
-                RE = unname(RE), Qt = Qt, Qs = Qs, Xt = Xt, Xs = Xs, TFP2 = TFP2, MP2 = MP2, 
+      res1 <- c(REV = REV, COST = COST, PROF = PROF, P = P, W = W, TT = TT, AO = AO, AI = AI,
+                TFP = TFP, MP = MP, TFPE = TFPE,  teseme.O, ROSE = unname(ROSE), OSME = unname(OSME), RME = unname(RME),
+                RE = unname(RE), Qt = Qt, Qs = Qs, Xt = Xt, Xs = Xs, TFP2 = TFP2, MP2 = MP2,
                 TFPE2 = TFPE2, teseme.O2["RAE2"], ROSE2 = unname(ROSE2), OSME2 = unname(OSME2), RME2 = unname(RME2),
                 RE2 = unname(RE2), PRICEI = PI, PRICEO = PO)
     } else {
@@ -122,9 +122,9 @@ paa.1 <- function(data, step1, ano, year.vec, tech.reg, rts, orientation, parall
         RISE2 <- (Qs/(Xs * teseme.I2["CAE2"] * teseme.I2["ITE2"]))/MP2
         ISME2 <- teseme.I2["CAE2"] * RISE2
         RME2 <- TFPE2/teseme.I2["ITE2"]/teseme.I2["ISE2"]
-        res1 <- c(REV = REV, COST = COST, PROF = PROF, P = P, W = W, TT = TT, AO = AO, AI = AI, 
+        res1 <- c(REV = REV, COST = COST, PROF = PROF, P = P, W = W, TT = TT, AO = AO, AI = AI,
                   TFP = TFP, MP = MP, TFPE = TFPE, teseme.I, RISE = unname(RISE), ISME = unname(ISME),
-                  RME = unname(RME), CE = unname(CE), Qt = Qt, Qs = Qs, Xt = Xt, Xs = Xs, TFP2 = TFP2, 
+                  RME = unname(RME), CE = unname(CE), Qt = Qt, Qs = Qs, Xt = Xt, Xs = Xs, TFP2 = TFP2,
                   MP2 = MP2, TFPE2 = TFPE2,teseme.I2["CAE2"], RISE2 = unname(RISE2), ISME2 = unname(ISME2),
                   RME2 = unname(RME2), CE2 = unname(CE2), PRICEI = PI, PRICEO = PO)
       } else {
@@ -166,10 +166,10 @@ paa.1 <- function(data, step1, ano, year.vec, tech.reg, rts, orientation, parall
         RE2.CE2 <- sqrt(RE2 * CE2)
         ROSE2.RISE2 <- sqrt(ROSE2 * RISE2)
         OSME2.ISME2 <- teseme.OI2["RAE2.CAE2"] * ROSE2.RISE2
-        res1 <- c(REV = REV, COST = COST, PROF = PROF, P = P, W = W, TT = TT, AO = AO, AI = AI, 
-                  TFP = TFP, MP = MP, TFPE = TFPE, teseme.OI, ROSE.RISE = unname(ROSE.RISE), 
-                  OSME.ISME = unname(OSME.ISME), RME = unname(RME), RE.CE = unname(RE.CE), Qt = Qt, 
-                  Qs = Qs, Xt = Xt, Xs = Xs, TFP2 = TFP2, MP2 = MP2, TFPE2 = TFPE2, teseme.OI2["RAE2.CAE2"], 
+        res1 <- c(REV = REV, COST = COST, PROF = PROF, P = P, W = W, TT = TT, AO = AO, AI = AI,
+                  TFP = TFP, MP = MP, TFPE = TFPE, teseme.OI, ROSE.RISE = unname(ROSE.RISE),
+                  OSME.ISME = unname(OSME.ISME), RME = unname(RME), RE.CE = unname(RE.CE), Qt = Qt,
+                  Qs = Qs, Xt = Xt, Xs = Xs, TFP2 = TFP2, MP2 = MP2, TFPE2 = TFPE2, teseme.OI2["RAE2.CAE2"],
                   ROSE2.RISE2 = unname(ROSE2.RISE2), OSME2.ISME2 = unname(OSME2.ISME2), RME2 = unname(RME2),
                   RE2.CE2 = unname(RE2.CE2), PRICEI = PI, PRICEO = PO)
       }
@@ -211,7 +211,7 @@ paa.2 <- function(data, step1, ano, year.vec, rts, orientation, parallel, mean.x
   }
   XREFs <- t(as.matrix(data[, step1$x.vars]))
   YREFs <- t(as.matrix(data[, step1$y.vars]))
-  res2 <- foreach(dmu = 1:length(data[data[, step1$time.var] == year.vec[ano], step1$id.var]), .combine = rbind, 
+  res2 <- foreach(dmu = 1:length(data[data[, step1$time.var] == year.vec[ano], step1$id.var]), .combine = rbind,
     .packages = c("lpSolveAPI")) %dopar% {
       if (nrow(data) > 99 & parallel == FALSE & ((ano-1)*nrow(data[data[, step1$time.var] == year.vec[ano], ])+dmu) %in% itt) {
         cat(nextElem(it))
@@ -224,11 +224,11 @@ paa.2 <- function(data, step1, ano, year.vec, rts, orientation, parallel, mean.x
     AO <- Qt
     AI <- Xt
     TFP <- AO/AI
-    MP <- D.tfp(XOBS = X1[, dmu], YOBS = Y1[, dmu], XREF = XREFs, YREF = YREFs, PRICESO = P1[, dmu], PRICESI = W1[, 
+    MP <- D.tfp(XOBS = X1[, dmu], YOBS = Y1[, dmu], XREF = XREFs, YREF = YREFs, PRICESO = P1[, dmu], PRICESI = W1[,
       dmu], rts)
     TFPE <- TFP/MP
     TFP2 <- Qs/Xs
-    MP2 <- D.tfp(XOBS = X2[, dmu], YOBS = Y2[, dmu], XREF = XREFs, YREF = YREFs, PRICESO = P1[, dmu], PRICESI = W1[, 
+    MP2 <- D.tfp(XOBS = X2[, dmu], YOBS = Y2[, dmu], XREF = XREFs, YREF = YREFs, PRICESO = P1[, dmu], PRICESI = W1[,
       dmu], rts)
     TFPE2 <- TFP2/MP2
     if (shadow == TRUE) {
@@ -257,9 +257,9 @@ paa.2 <- function(data, step1, ano, year.vec, rts, orientation, parallel, mean.x
       ROSE2 <- ((Qs/(teseme.O2["OTE2"] * teseme.O2["RAE2"]))/Xs)/MP2
       OSME2 <- teseme.O2["RAE2"] * ROSE2
       RME2 <- TFPE2/teseme.O2["OTE2"]/teseme.O2["OSE2"]
-      res1 <- c(REV = REV, COST = COST, PROF = PROF, P = P, W = W, TT = TT, AO = AO, AI = AI, 
-                TFP = TFP, MP = MP, TFPE = TFPE,  teseme.O, ROSE = unname(ROSE), OSME = unname(OSME), RME = unname(RME), 
-                RE = unname(RE), Qt = Qt, Qs = Qs, Xt = Xt, Xs = Xs, TFP2 = TFP2, MP2 = MP2, 
+      res1 <- c(REV = REV, COST = COST, PROF = PROF, P = P, W = W, TT = TT, AO = AO, AI = AI,
+                TFP = TFP, MP = MP, TFPE = TFPE,  teseme.O, ROSE = unname(ROSE), OSME = unname(OSME), RME = unname(RME),
+                RE = unname(RE), Qt = Qt, Qs = Qs, Xt = Xt, Xs = Xs, TFP2 = TFP2, MP2 = MP2,
                 TFPE2 = TFPE2, teseme.O2["RAE2"], ROSE2 = unname(ROSE2), OSME2 = unname(OSME2), RME2 = unname(RME2),
                 RE2 = unname(RE2), PRICEI = PI, PRICEO = PO)
     } else {
@@ -282,9 +282,9 @@ paa.2 <- function(data, step1, ano, year.vec, rts, orientation, parallel, mean.x
         RISE2 <- (Qs/(Xs * teseme.I2["CAE2"] * teseme.I2["ITE2"]))/MP2
         ISME2 <- teseme.I2["CAE2"] * RISE2
         RME2 <- TFPE2/teseme.I2["ITE2"]/teseme.I2["ISE2"]
-        res1 <- c(REV = REV, COST = COST, PROF = PROF, P = P, W = W, TT = TT, AO = AO, AI = AI, 
+        res1 <- c(REV = REV, COST = COST, PROF = PROF, P = P, W = W, TT = TT, AO = AO, AI = AI,
                   TFP = TFP, MP = MP, TFPE = TFPE, teseme.I, RISE = unname(RISE), ISME = unname(ISME),
-                  RME = unname(RME), CE = unname(CE), Qt = Qt, Qs = Qs, Xt = Xt, Xs = Xs, TFP2 = TFP2, 
+                  RME = unname(RME), CE = unname(CE), Qt = Qt, Qs = Qs, Xt = Xt, Xs = Xs, TFP2 = TFP2,
                   MP2 = MP2, TFPE2 = TFPE2,teseme.I2["CAE2"], RISE2 = unname(RISE2), ISME2 = unname(ISME2),
                   RME2 = unname(RME2), CE2 = unname(CE2), PRICEI = PI, PRICEO = PO)
       } else {
@@ -326,10 +326,10 @@ paa.2 <- function(data, step1, ano, year.vec, rts, orientation, parallel, mean.x
         RE2.CE2 <- sqrt(RE2 * CE2)
         ROSE2.RISE2 <- sqrt(ROSE2 * RISE2)
         OSME2.ISME2 <- teseme.OI2["RAE2.CAE2"] * ROSE2.RISE2
-        res1 <- c(REV = REV, COST = COST, PROF = PROF, P = P, W = W, TT = TT, AO = AO, AI = AI, 
-                  TFP = TFP, MP = MP, TFPE = TFPE, teseme.OI, ROSE.RISE = unname(ROSE.RISE), 
-                  OSME.ISME = unname(OSME.ISME), RME = unname(RME), RE.CE = unname(RE.CE), Qt = Qt, 
-                  Qs = Qs, Xt = Xt, Xs = Xs, TFP2 = TFP2, MP2 = MP2, TFPE2 = TFPE2, teseme.OI2["RAE2.CAE2"], 
+        res1 <- c(REV = REV, COST = COST, PROF = PROF, P = P, W = W, TT = TT, AO = AO, AI = AI,
+                  TFP = TFP, MP = MP, TFPE = TFPE, teseme.OI, ROSE.RISE = unname(ROSE.RISE),
+                  OSME.ISME = unname(OSME.ISME), RME = unname(RME), RE.CE = unname(RE.CE), Qt = Qt,
+                  Qs = Qs, Xt = Xt, Xs = Xs, TFP2 = TFP2, MP2 = MP2, TFPE2 = TFPE2, teseme.OI2["RAE2.CAE2"],
                   ROSE2.RISE2 = unname(ROSE2.RISE2), OSME2.ISME2 = unname(OSME2.ISME2), RME2 = unname(RME2),
                   RE2.CE2 = unname(RE2.CE2), PRICEI = PI, PRICEO = PO)
       }
@@ -337,21 +337,4 @@ paa.2 <- function(data, step1, ano, year.vec, rts, orientation, parallel, mean.x
     return(res1)
   }
   res2
-}
-
-### Paasche, print fonction
-print.Paasche <- function(x, digits = NULL, ...) {
-  if (is.null(digits)) {
-    digits <- max(3, getOption("digits") - 3)
-  }
-  cat("\nPaasche productivity and profitability levels (summary):\n\n")
-  print(summary(x[["Levels"]][-c(1:2)], digits = digits), digits = digits)
-  cat("\n\nPaasche productivity and profitability changes (summary):\n\n")
-  print(summary(x[["Changes"]][-c(1:2)], digits = digits), digits = digits)
-  if (!is.null(x[["Shadowp"]])) {
-    cat("\n\nPaasche productivity shadow prices (summary):\n\n")
-    print(summary(x[["Shadowp"]][-c(1:2)], digits = digits), digits = digits)
-  }
-  cat("\n")
-  invisible(x)
 }

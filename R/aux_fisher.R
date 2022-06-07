@@ -52,7 +52,7 @@ fish.1 <- function(data, step1, ano, year.vec, tech.reg, rts, orientation, paral
   } else {
     t(as.matrix(data[data[, step1$time.var] == year.vec[ano - 1], step1$w.vars]))
   }
-  res2 <- foreach(dmu = 1:length(data[data[, step1$time.var] == year.vec[ano], step1$id.var]), 
+  res2 <- foreach(dmu = 1:length(data[data[, step1$time.var] == year.vec[ano], step1$id.var]),
     .combine = rbind, .packages = c("lpSolveAPI")) %dopar% {
       if (nrow(data) > 99 & parallel == FALSE & ((ano-1)*nrow(data[data[, step1$time.var] == year.vec[ano], ])+dmu) %in% itt) {
         cat(nextElem(it))
@@ -73,13 +73,13 @@ fish.1 <- function(data, step1, ano, year.vec, tech.reg, rts, orientation, paral
     AO <- Qt
     AI <- Xt
     TFP <- AO/AI
-    MP <- sqrt(D.tfp(XOBS = X1[, dmu], YOBS = Y1[, dmu], XREF = XREF1, YREF = YREF1, PRICESO = P1[, 
-      dmu], PRICESI = W1[, dmu], rts) * D.tfp(XOBS = X1[, dmu], YOBS = Y1[, dmu], XREF = XREF1, 
+    MP <- sqrt(D.tfp(XOBS = X1[, dmu], YOBS = Y1[, dmu], XREF = XREF1, YREF = YREF1, PRICESO = P1[,
+      dmu], PRICESI = W1[, dmu], rts) * D.tfp(XOBS = X1[, dmu], YOBS = Y1[, dmu], XREF = XREF1,
       YREF = YREF1, PRICESO = P2[, dmu], PRICESI = W2[, dmu], rts))
     TFPE <- TFP/MP
     TFP2 <- Qs/Xs
-    MP2 <- sqrt(D.tfp(XOBS = X2[, dmu], YOBS = Y2[, dmu], XREF = XREF2, YREF = YREF2, PRICESO = P1[, 
-      dmu], PRICESI = W1[, dmu], rts) * D.tfp(XOBS = X2[, dmu], YOBS = Y2[, dmu], XREF = XREF2, 
+    MP2 <- sqrt(D.tfp(XOBS = X2[, dmu], YOBS = Y2[, dmu], XREF = XREF2, YREF = YREF2, PRICESO = P1[,
+      dmu], PRICESI = W1[, dmu], rts) * D.tfp(XOBS = X2[, dmu], YOBS = Y2[, dmu], XREF = XREF2,
       YREF = YREF2, PRICESO = P2[, dmu], PRICESI = W2[, dmu], rts))
     TFPE2 <- TFP2/MP2
     if (shadow == TRUE) {
@@ -112,9 +112,9 @@ fish.1 <- function(data, step1, ano, year.vec, tech.reg, rts, orientation, paral
       ROSE2 <- ((Qs/(teseme.O2L["OTE2"] * RAE2))/Xs)/MP2
       OSME2 <- RAE2 * ROSE2
       RME2 <- TFPE2/teseme.O2L["OTE2"]/teseme.O2L["OSE2"]
-      res1 <- c(REV = REV, COST = COST, PROF = PROF, P = P, W = W, TT = TT, AO = AO, AI = AI, 
-                TFP = TFP, MP = MP, TFPE = TFPE,  teseme.OL[1:2], RAE = unname(RAE), ROSE = unname(ROSE), OSME = unname(OSME), RME = unname(RME), 
-                RE = unname(RE), Qt = Qt, Qs = Qs, Xt = Xt, Xs = Xs, TFP2 = TFP2, MP2 = MP2, 
+      res1 <- c(REV = REV, COST = COST, PROF = PROF, P = P, W = W, TT = TT, AO = AO, AI = AI,
+                TFP = TFP, MP = MP, TFPE = TFPE,  teseme.OL[1:2], RAE = unname(RAE), ROSE = unname(ROSE), OSME = unname(OSME), RME = unname(RME),
+                RE = unname(RE), Qt = Qt, Qs = Qs, Xt = Xt, Xs = Xs, TFP2 = TFP2, MP2 = MP2,
                 TFPE2 = TFPE2, RAE2, ROSE2 = unname(ROSE2), OSME2 = unname(OSME2), RME2 = unname(RME2),
                 RE2 = unname(RE2), PRICEI = PI, PRICEO = PO)
     } else {
@@ -141,9 +141,9 @@ fish.1 <- function(data, step1, ano, year.vec, tech.reg, rts, orientation, paral
         RISE2 <- (Qs/(Xs * CAE2 * teseme.I2L["ITE2"]))/MP2
         ISME2 <- CAE2 * RISE2
         RME2 <- TFPE2/teseme.I2L["ITE2"]/teseme.I2L["ISE2"]
-        res1 <- c(REV = REV, COST = COST, PROF = PROF, P = P, W = W, TT = TT, AO = AO, AI = AI, 
+        res1 <- c(REV = REV, COST = COST, PROF = PROF, P = P, W = W, TT = TT, AO = AO, AI = AI,
                   TFP = TFP, MP = MP, TFPE = TFPE, teseme.IL[1:2], CAE = unname(CAE), RISE = unname(RISE), ISME = unname(ISME),
-                  RME = unname(RME), CE = unname(CE), Qt = Qt, Qs = Qs, Xt = Xt, Xs = Xs, TFP2 = TFP2, 
+                  RME = unname(RME), CE = unname(CE), Qt = Qt, Qs = Qs, Xt = Xt, Xs = Xs, TFP2 = TFP2,
                   MP2 = MP2, TFPE2 = TFPE2, CAE2, RISE2 = unname(RISE2), ISME2 = unname(ISME2),
                   RME2 = unname(RME2), CE2 = unname(CE2), PRICEI = PI, PRICEO = PO)
       } else {
@@ -194,10 +194,10 @@ fish.1 <- function(data, step1, ano, year.vec, tech.reg, rts, orientation, paral
         RAE2.CAE2 <- sqrt(RAE2 * CAE2)
         ROSE2.RISE2 <- sqrt(ROSE2 * RISE2)
         OSME2.ISME2 <- RAE2.CAE2 * ROSE2.RISE2
-        res1 <- c(REV = REV, COST = COST, PROF = PROF, P = P, W = W, TT = TT, AO = AO, AI = AI, 
-                  TFP = TFP, MP = MP, TFPE = TFPE, teseme.OIL[1:2], RAE.CAE = unname(RAE.CAE), ROSE.RISE = unname(ROSE.RISE), 
-                  OSME.ISME = unname(OSME.ISME), RME = unname(RME), RE.CE = unname(RE.CE), Qt = Qt, 
-                  Qs = Qs, Xt = Xt, Xs = Xs, TFP2 = TFP2, MP2 = MP2, TFPE2 = TFPE2, RAE2.CAE2 = unname(RAE2.CAE2), 
+        res1 <- c(REV = REV, COST = COST, PROF = PROF, P = P, W = W, TT = TT, AO = AO, AI = AI,
+                  TFP = TFP, MP = MP, TFPE = TFPE, teseme.OIL[1:2], RAE.CAE = unname(RAE.CAE), ROSE.RISE = unname(ROSE.RISE),
+                  OSME.ISME = unname(OSME.ISME), RME = unname(RME), RE.CE = unname(RE.CE), Qt = Qt,
+                  Qs = Qs, Xt = Xt, Xs = Xs, TFP2 = TFP2, MP2 = MP2, TFPE2 = TFPE2, RAE2.CAE2 = unname(RAE2.CAE2),
                   ROSE2.RISE2 = unname(ROSE2.RISE2), OSME2.ISME2 = unname(OSME2.ISME2), RME2 = unname(RME2),
                   RE2.CE2 = unname(RE2.CE2), PRICEI = PI, PRICEO = PO)
       }
@@ -239,7 +239,7 @@ fish.2 <- function(data, step1, ano, year.vec, rts, orientation, parallel, mean.
   }
   XREFs <- t(as.matrix(data[, step1$x.vars]))
   YREFs <- t(as.matrix(data[, step1$y.vars]))
-  res2 <- foreach(dmu = 1:length(data[data[, step1$time.var] == year.vec[ano], step1$id.var]), 
+  res2 <- foreach(dmu = 1:length(data[data[, step1$time.var] == year.vec[ano], step1$id.var]),
     .combine = rbind, .packages = c("lpSolveAPI")) %dopar% {
       if (nrow(data) > 99 & parallel == FALSE & ((ano-1)*nrow(data[data[, step1$time.var] == year.vec[ano], ])+dmu) %in% itt) {
         cat(nextElem(it))
@@ -260,13 +260,13 @@ fish.2 <- function(data, step1, ano, year.vec, rts, orientation, parallel, mean.
     AO <- Qt
     AI <- Xt
     TFP <- AO/AI
-    MP <- sqrt(D.tfp(XOBS = X1[, dmu], YOBS = Y1[, dmu], XREF = XREFs, YREF = YREFs, PRICESO = P1[, 
-      dmu], PRICESI = W1[, dmu], rts) * D.tfp(XOBS = X1[, dmu], YOBS = Y1[, dmu], XREF = XREFs, 
+    MP <- sqrt(D.tfp(XOBS = X1[, dmu], YOBS = Y1[, dmu], XREF = XREFs, YREF = YREFs, PRICESO = P1[,
+      dmu], PRICESI = W1[, dmu], rts) * D.tfp(XOBS = X1[, dmu], YOBS = Y1[, dmu], XREF = XREFs,
       YREF = YREFs, PRICESO = P2[, dmu], PRICESI = W2[, dmu], rts))
     TFPE <- TFP/MP
     TFP2 <- Qs/Xs
-    MP2 <- sqrt(D.tfp(XOBS = X2[, dmu], YOBS = Y2[, dmu], XREF = XREFs, YREF = YREFs, PRICESO = P1[, 
-      dmu], PRICESI = W1[, dmu], rts) * D.tfp(XOBS = X2[, dmu], YOBS = Y2[, dmu], XREF = XREFs, 
+    MP2 <- sqrt(D.tfp(XOBS = X2[, dmu], YOBS = Y2[, dmu], XREF = XREFs, YREF = YREFs, PRICESO = P1[,
+      dmu], PRICESI = W1[, dmu], rts) * D.tfp(XOBS = X2[, dmu], YOBS = Y2[, dmu], XREF = XREFs,
       YREF = YREFs, PRICESO = P2[, dmu], PRICESI = W2[, dmu], rts))
     TFPE2 <- TFP2/MP2
     if (shadow == TRUE) {
@@ -299,9 +299,9 @@ fish.2 <- function(data, step1, ano, year.vec, rts, orientation, parallel, mean.
       ROSE2 <- ((Qs/(teseme.O2L["OTE2"] * RAE2))/Xs)/MP2
       OSME2 <- RAE2 * ROSE2
       RME2 <- TFPE2/teseme.O2L["OTE2"]/teseme.O2L["OSE2"]
-      res1 <- c(REV = REV, COST = COST, PROF = PROF, P = P, W = W, TT = TT, AO = AO, AI = AI, 
-                TFP = TFP, MP = MP, TFPE = TFPE,  teseme.OL[1:2], RAE = unname(RAE), ROSE = unname(ROSE), OSME = unname(OSME), RME = unname(RME), 
-                RE = unname(RE), Qt = Qt, Qs = Qs, Xt = Xt, Xs = Xs, TFP2 = TFP2, MP2 = MP2, 
+      res1 <- c(REV = REV, COST = COST, PROF = PROF, P = P, W = W, TT = TT, AO = AO, AI = AI,
+                TFP = TFP, MP = MP, TFPE = TFPE,  teseme.OL[1:2], RAE = unname(RAE), ROSE = unname(ROSE), OSME = unname(OSME), RME = unname(RME),
+                RE = unname(RE), Qt = Qt, Qs = Qs, Xt = Xt, Xs = Xs, TFP2 = TFP2, MP2 = MP2,
                 TFPE2 = TFPE2, RAE2, ROSE2 = unname(ROSE2), OSME2 = unname(OSME2), RME2 = unname(RME2),
                 RE2 = unname(RE2), PRICEI = PI, PRICEO = PO)
     } else {
@@ -328,9 +328,9 @@ fish.2 <- function(data, step1, ano, year.vec, rts, orientation, parallel, mean.
         RISE2 <- (Qs/(Xs * CAE2 * teseme.I2L["ITE2"]))/MP2
         ISME2 <- CAE2 * RISE2
         RME2 <- TFPE2/teseme.I2L["ITE2"]/teseme.I2L["ISE2"]
-        res1 <- c(REV = REV, COST = COST, PROF = PROF, P = P, W = W, TT = TT, AO = AO, AI = AI, 
+        res1 <- c(REV = REV, COST = COST, PROF = PROF, P = P, W = W, TT = TT, AO = AO, AI = AI,
                   TFP = TFP, MP = MP, TFPE = TFPE, teseme.IL[1:2], CAE = unname(CAE), RISE = unname(RISE), ISME = unname(ISME),
-                  RME = unname(RME), CE = unname(CE), Qt = Qt, Qs = Qs, Xt = Xt, Xs = Xs, TFP2 = TFP2, 
+                  RME = unname(RME), CE = unname(CE), Qt = Qt, Qs = Qs, Xt = Xt, Xs = Xs, TFP2 = TFP2,
                   MP2 = MP2, TFPE2 = TFPE2, CAE2, RISE2 = unname(RISE2), ISME2 = unname(ISME2),
                   RME2 = unname(RME2), CE2 = unname(CE2), PRICEI = PI, PRICEO = PO)
       } else {
@@ -381,10 +381,10 @@ fish.2 <- function(data, step1, ano, year.vec, rts, orientation, parallel, mean.
         RAE2.CAE2 <- sqrt(RAE2 * CAE2)
         ROSE2.RISE2 <- sqrt(ROSE2 * RISE2)
         OSME2.ISME2 <- RAE2.CAE2 * ROSE2.RISE2
-        res1 <- c(REV = REV, COST = COST, PROF = PROF, P = P, W = W, TT = TT, AO = AO, AI = AI, 
-                  TFP = TFP, MP = MP, TFPE = TFPE, teseme.OIL[1:2], RAE.CAE = unname(RAE.CAE), ROSE.RISE = unname(ROSE.RISE), 
-                  OSME.ISME = unname(OSME.ISME), RME = unname(RME), RE.CE = unname(RE.CE), Qt = Qt, 
-                  Qs = Qs, Xt = Xt, Xs = Xs, TFP2 = TFP2, MP2 = MP2, TFPE2 = TFPE2, RAE2.CAE2 = unname(RAE2.CAE2), 
+        res1 <- c(REV = REV, COST = COST, PROF = PROF, P = P, W = W, TT = TT, AO = AO, AI = AI,
+                  TFP = TFP, MP = MP, TFPE = TFPE, teseme.OIL[1:2], RAE.CAE = unname(RAE.CAE), ROSE.RISE = unname(ROSE.RISE),
+                  OSME.ISME = unname(OSME.ISME), RME = unname(RME), RE.CE = unname(RE.CE), Qt = Qt,
+                  Qs = Qs, Xt = Xt, Xs = Xs, TFP2 = TFP2, MP2 = MP2, TFPE2 = TFPE2, RAE2.CAE2 = unname(RAE2.CAE2),
                   ROSE2.RISE2 = unname(ROSE2.RISE2), OSME2.ISME2 = unname(OSME2.ISME2), RME2 = unname(RME2),
                   RE2.CE2 = unname(RE2.CE2), PRICEI = PI, PRICEO = PO)
       }
@@ -392,21 +392,4 @@ fish.2 <- function(data, step1, ano, year.vec, rts, orientation, parallel, mean.
     return(res1)
   }
   res2
-}
-
-### Fisher, print fonction
-print.Fisher <- function(x, digits = NULL, ...) {
-  if (is.null(digits)) {
-    digits <- max(3, getOption("digits") - 3)
-  }
-  cat("\nFisher productivity and profitability levels (summary):\n\n")
-  print(summary(x[["Levels"]][-c(1:2)], digits = digits), digits = digits)
-  cat("\n\nFisher productivity and profitability changes (summary):\n\n")
-  print(summary(x[["Changes"]][-c(1:2)], digits = digits), digits = digits)
-  if (!is.null(x[["Shadowp"]])) {
-    cat("\n\nFisher productivity shadow prices (summary):\n\n")
-    print(summary(x[["Shadowp"]][-c(1:2)], digits = digits), digits = digits)
-  }
-  cat("\n")
-  invisible(x)
 }
