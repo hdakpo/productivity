@@ -1,0 +1,70 @@
+################################################################################
+#                                                                              #
+# data examples in productivity package                                        #
+#                                                                              #
+################################################################################
+
+#------------------------------------------------------------------------------#
+# data list                                                                    #
+#         -Data on U.S. States agricultural data                               #
+#------------------------------------------------------------------------------#
+
+#' Price indices and implicit quantities of USA farm outputs and inputs by
+#' State, 1995-2004
+#'
+#' This data set from the United States Department of Agriculture (USDA) and its
+#' Economic Research Service department contains USA agriculture's input and
+#' output quantities along with their respective price indices for 48 States.
+#'
+#' All quantities are expressed in thousand US$1996 and prices are relative to
+#' Alabama 1996 = 1.
+#'
+#' @details Further details on the data and the different variables can be found
+#' in the references.
+#'
+#' @name usagri
+#' @docType data
+#' @format A data frame with 480 observations on the following 17 variables:
+#' \describe{
+#' \item{States}{48 States of the USA identified with two capital letters.}
+#' \item{States.num}{State number.}
+#' \item{Years}{Year identification.}
+#' \item{q.livestock}{Livestock and animal products' quantity, in thousand
+#' US$1996.}
+#' \item{q.crop}{Crops' quantity, in thousand US$1996.}
+#' \item{q.other}{Other farm-related productions' quantity, in thousand US$1996.}
+#' \item{q.capital}{Capital services' quantity, in thousand US$1996.}
+#' \item{q.land}{Land services' quantity, in thousand US$1996.}
+#' \item{q.labor}{Labor services' quantity, in thousand US$1996.}
+#' \item{q.materials}{Total intermediate input quantity, in thousand US$1996.}
+#' \item{p.livestock}{Livestock and animal products' relative price
+#' (reference is 1 = Alabama 1996).}
+#' \item{p.crop}{Crops' relative price (reference is 1 = Alabama 1996).}
+#' \item{p.other}{Other farm-related productions' relative price
+#' (reference is 1 = Alabama 1996).}
+#' \item{p.capital}{Capital services' relative price
+#' (reference is 1 = Alabama 1996).}
+#' \item{p.land}{Land service flows' relative price
+#' (reference is 1 = Alabama 1996).}
+#' \item{p.labor}{Labor services' relative price (reference is 1 = Alabama 1996).}
+#' \item{p.materials}{Total intermediate inputs' relative price
+#' (reference is 1 = Alabama 1996).}}
+#'
+#' @references Ball V.E., Gollop F.M., Kelly-Hawke A., and Swinand G.P. (1999),
+#' Patterns of state productivity growth in the US farm sector: Linking state
+#' and aggregate models. \emph{American Journal of Agricultural Economics},
+#' \bold{81}(1], 164--179. \url{https://doi.org/10.2307/1244458}
+#'
+#' Ball V.E., Hallahan C., and Nehring R. (2004), Convergence of productivity:
+#' An analysis of the catch-up hypothesis within a panel of states.
+#' \emph{American Journal of Agricultural Economics}, \bold{86}(5), 1315--1321.
+#' \url{https://doi.org/10.1111/j.0002-9092.2004.00683.x}
+#'
+#' @source
+#' \url{http://www.ers.usda.gov/data-products/agricultural-productivity-in-the-us.aspx}
+#' @keywords datasets
+#' @examples
+#'
+#' str(usagri)
+#' summary(usagri)
+NULL

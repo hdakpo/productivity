@@ -12,7 +12,7 @@ lo.1 <- function(data, step1, ano, year.vec, tech.reg, rts, orientation, paralle
   }
   P1 <- t(as.matrix(data[data[, step1$time.var] == year.vec[ano], step1$p.vars]))
   W1 <- t(as.matrix(data[data[, step1$time.var] == year.vec[ano], step1$w.vars]))
-  res2 <- foreach(dmu = 1:length(data[data[, step1$time.var] == year.vec[ano], step1$id.var]), .combine = rbind, 
+  res2 <- foreach(dmu = 1:length(data[data[, step1$time.var] == year.vec[ano], step1$id.var]), .combine = rbind,
     .packages = c("lpSolveAPI")) %dopar% {
       if (nrow(data) > 99 & parallel == FALSE & ((ano-1)*nrow(data[data[, step1$time.var] == year.vec[ano], ])+dmu) %in% itt) {
         cat(nextElem(it))
@@ -42,8 +42,8 @@ lo.1 <- function(data, step1, ano, year.vec, tech.reg, rts, orientation, paralle
       P <- REV/AO
       W <- COST/AI
       TT <- P/W
-      res1 <- c(REV = REV, COST = COST, PROF = PROF, P = P, W = W, TT = TT, AO = AO, AI = AI, TFP = TFP, 
-        MP = MP, TFPE = TFPE, teseme.O, ROSE = unname(ROSE), OSME = unname(OSME), RME = unname(RME), RE = unname(RE), 
+      res1 <- c(REV = REV, COST = COST, PROF = PROF, P = P, W = W, TT = TT, AO = AO, AI = AI, TFP = TFP,
+        MP = MP, TFPE = TFPE, teseme.O, ROSE = unname(ROSE), OSME = unname(OSME), RME = unname(RME), RE = unname(RE),
         PRICEI = PI, PRICEO = PO)
     } else {
       if (orientation == "in") {
@@ -58,7 +58,7 @@ lo.1 <- function(data, step1, ano, year.vec, tech.reg, rts, orientation, paralle
         P <- REV/AO
         W <- COST/AI
         TT <- P/W
-        res1 <- c(REV = REV, COST = COST, PROF = PROF, P = P, W = W, TT = TT, AO = AO, AI = AI, TFP = TFP, 
+        res1 <- c(REV = REV, COST = COST, PROF = PROF, P = P, W = W, TT = TT, AO = AO, AI = AI, TFP = TFP,
           MP = MP, TFPE = TFPE, teseme.I, RISE = unname(RISE), ISME = unname(ISME),
           RME = unname(RME), CE = unname(CE), PRICEI = PI, PRICEO = PO)
       } else {
@@ -82,8 +82,8 @@ lo.1 <- function(data, step1, ano, year.vec, tech.reg, rts, orientation, paralle
         P <- REV/AO
         W <- COST/AI
         TT <- P/W
-        res1 <- c(REV = REV, COST = COST, PROF = PROF, P = P, W = W, TT = TT, AO = AO, AI = AI, TFP = TFP, 
-          MP = MP, TFPE = TFPE, teseme.OI, ROSE.RISE = unname(ROSE.RISE), 
+        res1 <- c(REV = REV, COST = COST, PROF = PROF, P = P, W = W, TT = TT, AO = AO, AI = AI, TFP = TFP,
+          MP = MP, TFPE = TFPE, teseme.OI, ROSE.RISE = unname(ROSE.RISE),
           OSME.ISME = unname(OSME.ISME), RME = unname(RME), RE.CE = unname(RE.CE), PRICEI = PI, PRICEO = PO)
       }
     }
@@ -100,7 +100,7 @@ lo.2 <- function(data, step1, rts, orientation, parallel, PRICESO, PRICESI,  mea
   YREF1 <- Y1
   P1 <- t(as.matrix(data[, step1$p.vars]))
   W1 <- t(as.matrix(data[, step1$w.vars]))
-  res2 <- foreach(dmu = 1:length(data[, step1$id.var]), .combine = rbind, .packages = c("lpSolveAPI"), .export = c("DO.teseme", 
+  res2 <- foreach(dmu = 1:length(data[, step1$id.var]), .combine = rbind, .packages = c("lpSolveAPI"), .export = c("DO.teseme",
     "DI.teseme", "D.tfp", "DO.shdu", "DI.shdu")) %dopar% {
       if (nrow(data) > 99 & parallel == FALSE & dmu %in% itt) {
         cat(nextElem(it))
@@ -130,8 +130,8 @@ lo.2 <- function(data, step1, rts, orientation, parallel, PRICESO, PRICESI,  mea
       P <- REV/AO
       W <- COST/AI
       TT <- P/W
-      res1 <- c(REV = REV, COST = COST, PROF = PROF, P = P, W = W, TT = TT, AO = AO, AI = AI, TFP = TFP, 
-        MP = MP, TFPE = TFPE, teseme.O, ROSE = unname(ROSE), OSME = unname(OSME), RME = unname(RME), RE = unname(RE), 
+      res1 <- c(REV = REV, COST = COST, PROF = PROF, P = P, W = W, TT = TT, AO = AO, AI = AI, TFP = TFP,
+        MP = MP, TFPE = TFPE, teseme.O, ROSE = unname(ROSE), OSME = unname(OSME), RME = unname(RME), RE = unname(RE),
         PRICEI = PI, PRICEO = PO)
     } else {
       if (orientation == "in") {
@@ -146,7 +146,7 @@ lo.2 <- function(data, step1, rts, orientation, parallel, PRICESO, PRICESI,  mea
         P <- REV/AO
         W <- COST/AI
         TT <- P/W
-        res1 <- c(REV = REV, COST = COST, PROF = PROF, P = P, W = W, TT = TT, AO = AO, AI = AI, TFP = TFP, 
+        res1 <- c(REV = REV, COST = COST, PROF = PROF, P = P, W = W, TT = TT, AO = AO, AI = AI, TFP = TFP,
           MP = MP, TFPE = TFPE,  teseme.I, RISE = unname(RISE), ISME = unname(ISME),
           RME = unname(RME), CE = unname(CE), PRICEI = PI, PRICEO = PO)
       } else {
@@ -170,29 +170,12 @@ lo.2 <- function(data, step1, rts, orientation, parallel, PRICESO, PRICESI,  mea
         P <- REV/AO
         W <- COST/AI
         TT <- P/W
-        res1 <- c(REV = REV, COST = COST, PROF = PROF, P = P, W = W, TT = TT, AO = AO, AI = AI, TFP = TFP, 
-          MP = MP, TFPE = TFPE, teseme.OI, ROSE.RISE = unname(ROSE.RISE), 
+        res1 <- c(REV = REV, COST = COST, PROF = PROF, P = P, W = W, TT = TT, AO = AO, AI = AI, TFP = TFP,
+          MP = MP, TFPE = TFPE, teseme.OI, ROSE.RISE = unname(ROSE.RISE),
           OSME.ISME = unname(OSME.ISME), RME = unname(RME), RE.CE = unname(RE.CE), PRICEI = PI, PRICEO = PO)
       }
     }
     return(res1)
   }
   res2
-}
-
-### Lowe, print fonction
-print.Lowe <- function(x, digits = NULL, ...) {
-  if (is.null(digits)) {
-    digits <- max(3, getOption("digits") - 3)
-  }
-  cat("\nLowe productivity and profitability levels (summary):\n\n")
-  print(summary(x[["Levels"]][-c(1:2)], digits = digits), digits = digits)
-  cat("\n\nLowe productivity and profitability changes (summary):\n\n")
-  print(summary(x[["Changes"]][-c(1:2)], digits = digits), digits = digits)
-  if (!is.null(x[["Shadowp"]])) {
-    cat("\n\nLowe productivity shadow prices (summary):\n\n")
-    print(summary(x[["Shadowp"]][-c(1:2)], digits = digits), digits = digits)
-  }
-  cat("\n")
-  invisible(x)
 }

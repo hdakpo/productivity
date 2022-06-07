@@ -14,7 +14,7 @@ fp.1 <- function(data, step1, ano, year.vec, tech.reg, rts, orientation, paralle
     P1 <- t(as.matrix(data[data[, step1$time.var] == year.vec[ano], step1$p.vars]))
     W1 <- t(as.matrix(data[data[, step1$time.var] == year.vec[ano], step1$w.vars]))
   }
-  res2 <- foreach(dmu = 1:length(data[data[, step1$time.var] == year.vec[ano], step1$id.var]), .combine = rbind, 
+  res2 <- foreach(dmu = 1:length(data[data[, step1$time.var] == year.vec[ano], step1$id.var]), .combine = rbind,
     .packages = c("lpSolveAPI")) %dopar% {
       if (nrow(data) > 99 & parallel == FALSE & ((ano-1)*nrow(data[data[, step1$time.var] == year.vec[ano], ])+dmu) %in% itt) {
         cat(nextElem(it))
@@ -37,10 +37,10 @@ fp.1 <- function(data, step1, ano, year.vec, tech.reg, rts, orientation, paralle
         P <- REV/AO
         W <- COST/AI
         TT <- P/W
-        res1 <- c(REV = REV, COST = COST, PROF = PROF, P = P, W = W, TT = TT, AO = AO, AI = AI, TFP = TFP, 
+        res1 <- c(REV = REV, COST = COST, PROF = PROF, P = P, W = W, TT = TT, AO = AO, AI = AI, TFP = TFP,
           MP = MP, TFPE = TFPE, teseme.O, ROSE = unname(ROSE), OSME = unname(OSME), RME = unname(RME))
       } else {
-        res1 <- c(AO = AO, AI = AI, TFP = TFP, MP = MP, TFPE = TFPE, teseme.O, 
+        res1 <- c(AO = AO, AI = AI, TFP = TFP, MP = MP, TFPE = TFPE, teseme.O,
                   ROSE = unname(ROSE), OSME = unname(OSME), RME = unname(RME))
       }
     } else {
@@ -56,11 +56,11 @@ fp.1 <- function(data, step1, ano, year.vec, tech.reg, rts, orientation, paralle
           P <- REV/AO
           W <- COST/AI
           TT <- P/W
-          res1 <- c(REV = REV, COST = COST, PROF = PROF, P = P, W = W, TT = TT, AO = AO, AI = AI, TFP = TFP, 
+          res1 <- c(REV = REV, COST = COST, PROF = PROF, P = P, W = W, TT = TT, AO = AO, AI = AI, TFP = TFP,
           MP = MP, TFPE = TFPE, teseme.I, RISE = unname(RISE), ISME = unname(ISME),
           RME = unname(RME))
         } else {
-          res1 <- c(AO = AO, AI = AI, TFP = TFP, MP = MP, TFPE = TFPE, teseme.I, 
+          res1 <- c(AO = AO, AI = AI, TFP = TFP, MP = MP, TFPE = TFPE, teseme.I,
                     RISE = unname(RISE), ISME = unname(ISME), RME = unname(RME))
         }
       } else {
@@ -82,11 +82,11 @@ fp.1 <- function(data, step1, ano, year.vec, tech.reg, rts, orientation, paralle
           P <- REV/AO
           W <- COST/AI
           TT <- P/W
-          res1 <- c(REV = REV, COST = COST, PROF = PROF, P = P, W = W, TT = TT, AO = AO, AI = AI, TFP = TFP, 
-          MP = MP, TFPE = TFPE, teseme.OI, ROSE.RISE = unname(ROSE.RISE), 
+          res1 <- c(REV = REV, COST = COST, PROF = PROF, P = P, W = W, TT = TT, AO = AO, AI = AI, TFP = TFP,
+          MP = MP, TFPE = TFPE, teseme.OI, ROSE.RISE = unname(ROSE.RISE),
           OSME.ISME = unname(OSME.ISME), RME = unname(RME))
         } else {
-          res1 <- c(AO = AO, AI = AI, TFP = TFP, MP = MP, TFPE = TFPE, teseme.OI, 
+          res1 <- c(AO = AO, AI = AI, TFP = TFP, MP = MP, TFPE = TFPE, teseme.OI,
                     ROSE.RISE = unname(ROSE.RISE), OSME.ISME = unname(OSME.ISME), RME = unname(RME))
         }
       }
@@ -107,7 +107,7 @@ fp.2 <- function(data, step1, rts, orientation, parallel, PRICESO, PRICESI, mean
     P1 <- t(as.matrix(data[, step1$p.vars]))
     W1 <- t(as.matrix(data[, step1$w.vars]))
   }
-  res2 <- foreach(dmu = 1:length(data[, step1$id.var]), .combine = rbind, .packages = c("lpSolveAPI"), .export = c("DO.teseme", 
+  res2 <- foreach(dmu = 1:length(data[, step1$id.var]), .combine = rbind, .packages = c("lpSolveAPI"), .export = c("DO.teseme",
     "DI.teseme", "D.tfp")) %dopar% {
       if (nrow(data) > 99 & parallel == FALSE & dmu %in% itt) {
         cat(nextElem(it))
@@ -130,10 +130,10 @@ fp.2 <- function(data, step1, rts, orientation, parallel, PRICESO, PRICESI, mean
         P <- REV/AO
         W <- COST/AI
         TT <- P/W
-        res1 <- c(REV = REV, COST = COST, PROF = PROF, P = P, W = W, TT = TT, AO = AO, AI = AI, TFP = TFP, 
+        res1 <- c(REV = REV, COST = COST, PROF = PROF, P = P, W = W, TT = TT, AO = AO, AI = AI, TFP = TFP,
                   MP = MP, TFPE = TFPE, teseme.O, ROSE = unname(ROSE), OSME = unname(OSME), RME = unname(RME))
       } else {
-        res1 <- c(AO = AO, AI = AI, TFP = TFP, MP = MP, TFPE = TFPE, teseme.O, 
+        res1 <- c(AO = AO, AI = AI, TFP = TFP, MP = MP, TFPE = TFPE, teseme.O,
                   ROSE = unname(ROSE), OSME = unname(OSME), RME = unname(RME))
       }
     } else {
@@ -149,11 +149,11 @@ fp.2 <- function(data, step1, rts, orientation, parallel, PRICESO, PRICESI, mean
           P <- REV/AO
           W <- COST/AI
           TT <- P/W
-          res1 <- c(REV = REV, COST = COST, PROF = PROF, P = P, W = W, TT = TT, AO = AO, AI = AI, TFP = TFP, 
+          res1 <- c(REV = REV, COST = COST, PROF = PROF, P = P, W = W, TT = TT, AO = AO, AI = AI, TFP = TFP,
                     MP = MP, TFPE = TFPE, teseme.I, RISE = unname(RISE), ISME = unname(ISME),
                     RME = unname(RME))
         } else {
-          res1 <- c(AO = AO, AI = AI, TFP = TFP, MP = MP, TFPE = TFPE, teseme.I, 
+          res1 <- c(AO = AO, AI = AI, TFP = TFP, MP = MP, TFPE = TFPE, teseme.I,
                     RISE = unname(RISE), ISME = unname(ISME), RME = unname(RME))
         }
       } else {
@@ -175,11 +175,11 @@ fp.2 <- function(data, step1, rts, orientation, parallel, PRICESO, PRICESI, mean
           P <- REV/AO
           W <- COST/AI
           TT <- P/W
-          res1 <- c(REV = REV, COST = COST, PROF = PROF, P = P, W = W, TT = TT, AO = AO, AI = AI, TFP = TFP, 
-                    MP = MP, TFPE = TFPE, teseme.OI, ROSE.RISE = unname(ROSE.RISE), 
+          res1 <- c(REV = REV, COST = COST, PROF = PROF, P = P, W = W, TT = TT, AO = AO, AI = AI, TFP = TFP,
+                    MP = MP, TFPE = TFPE, teseme.OI, ROSE.RISE = unname(ROSE.RISE),
                     OSME.ISME = unname(OSME.ISME), RME = unname(RME))
         } else {
-          res1 <- c(AO = AO, AI = AI, TFP = TFP, MP = MP, TFPE = TFPE, teseme.OI, 
+          res1 <- c(AO = AO, AI = AI, TFP = TFP, MP = MP, TFPE = TFPE, teseme.OI,
                     ROSE.RISE = unname(ROSE.RISE), OSME.ISME = unname(OSME.ISME), RME = unname(RME))
         }
       }
@@ -187,21 +187,4 @@ fp.2 <- function(data, step1, rts, orientation, parallel, PRICESO, PRICESI, mean
     return(res1)
   }
   res2
-}
-
-### Färe-Primont (FP), print fonction
-print.FarePrimont <- function(x, digits = NULL, ...) {
-  if (is.null(digits)) {
-    digits <- max(3, getOption("digits") - 3)
-  }
-  cat("\nF\u00E4re-Primont productivity and profitability levels (summary):\n\n")
-  print(summary(x[["Levels"]][-c(1:2)], digits = digits), digits = digits)
-  cat("\n\nF\u00E4re-Primont productivity and profitability changes (summary):\n\n")
-  print(summary(x[["Changes"]][-c(1:2)], digits = digits), digits = digits)
-  if (!is.null(x[["Shadowp"]])) {
-    cat("\n\nF\u00E4re-Primont productivity shadow prices:\n\n")
-    print(x[["Shadowp"]], digits = digits)
-  }
-  cat("\n")
-  invisible(x)
 }

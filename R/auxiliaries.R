@@ -3,13 +3,13 @@
 # Data check
 
 check.1 <- function(data, id.var, time.var, x.vars, y.vars, w.vars, p.vars) {
-  if (!(is.data.frame(data))) 
+  if (!(is.data.frame(data)))
     stop("data must be a dataframe")
   names.var <- names(data)
   if (missing(id.var)) {
     stop("Missing id variable (id.var)", call. = FALSE)
   } else {
-    if (length(id.var) > 1) 
+    if (length(id.var) > 1)
       stop("Too many id variables (id.var). Only one can be defined", call. = FALSE)
     if (is.numeric(id.var)) {
       id.var.1 <- names.var[id.var]
@@ -17,13 +17,13 @@ check.1 <- function(data, id.var, time.var, x.vars, y.vars, w.vars, p.vars) {
       id.var.1 <- id.var
     }
     var_logical <- id.var.1 %in% names.var
-    if (!var_logical) 
+    if (!var_logical)
       stop("Unrecognizable variable in id.var: ", paste(id.var), call. = FALSE)
   }
   if (missing(time.var)) {
     stop("Missing time variable (time.var)", call. = FALSE)
   } else {
-    if (length(time.var) > 1) 
+    if (length(time.var) > 1)
       stop("Too many time variables (time.var). Only one can be defined", call. = FALSE)
     if (is.numeric(time.var)) {
       time.var.1 <- names.var[time.var]
@@ -31,7 +31,7 @@ check.1 <- function(data, id.var, time.var, x.vars, y.vars, w.vars, p.vars) {
       time.var.1 <- time.var
     }
     var_logical <- time.var.1 %in% names.var
-    if (!var_logical) 
+    if (!var_logical)
       stop("Unrecognizable variable in time.var:", paste(time.var), call. = FALSE)
   }
   if (missing(x.vars)) {
@@ -43,8 +43,8 @@ check.1 <- function(data, id.var, time.var, x.vars, y.vars, w.vars, p.vars) {
       x.vars.1 <- x.vars
     }
     var_logical <- x.vars.1 %in% names.var
-    if (!(all(var_logical))) 
-      stop("Unrecognizable variables in x.vars:", paste(x.vars[var_logical == F], collapse = ","), 
+    if (!(all(var_logical)))
+      stop("Unrecognizable variables in x.vars:", paste(x.vars[var_logical == F], collapse = ","),
         call. = FALSE)
   }
   if (missing(y.vars)) {
@@ -56,17 +56,17 @@ check.1 <- function(data, id.var, time.var, x.vars, y.vars, w.vars, p.vars) {
       y.vars.1 <- y.vars
     }
     var_logical <- y.vars.1 %in% names.var
-    if (!(all(var_logical))) 
-      stop("Unrecognizable variables in y.vars:", paste(y.vars[var_logical == F], collapse = ","), 
+    if (!(all(var_logical)))
+      stop("Unrecognizable variables in y.vars:", paste(y.vars[var_logical == F], collapse = ","),
         call. = FALSE)
   }
   if (is.null(w.vars) & is.null(p.vars)) {
     list(id.var = id.var.1, time.var = time.var.1, x.vars = x.vars.1, y.vars = y.vars.1)
   } else {
     if (!(is.null(w.vars)) & !(is.null(p.vars))) {
-      if (length(w.vars) != length(x.vars)) 
+      if (length(w.vars) != length(x.vars))
         stop("x.vars and w.vars must be of the same length", call. = FALSE)
-      if (length(p.vars) != length(y.vars)) 
+      if (length(p.vars) != length(y.vars))
         stop("y.vars and p.vars must be of the same length", call. = FALSE)
       if (is.numeric(w.vars)) {
         w.vars.1 <- names.var[w.vars]
@@ -74,8 +74,8 @@ check.1 <- function(data, id.var, time.var, x.vars, y.vars, w.vars, p.vars) {
         w.vars.1 <- w.vars
       }
       var_logical <- w.vars.1 %in% names.var
-      if (!(all(var_logical))) 
-        stop("Unrecognizable variables in w.vars:", paste(w.vars[var_logical == F], 
+      if (!(all(var_logical)))
+        stop("Unrecognizable variables in w.vars:", paste(w.vars[var_logical == F],
           collapse = ","), call. = FALSE)
       if (is.numeric(p.vars)) {
         p.vars.1 <- names.var[p.vars]
@@ -83,10 +83,10 @@ check.1 <- function(data, id.var, time.var, x.vars, y.vars, w.vars, p.vars) {
         p.vars.1 <- p.vars
       }
       var_logical <- p.vars.1 %in% names.var
-      if (!(all(var_logical))) 
-        stop("Unrecognizable variables in p.vars:", paste(p.vars[var_logical == F], 
+      if (!(all(var_logical)))
+        stop("Unrecognizable variables in p.vars:", paste(p.vars[var_logical == F],
           collapse = ","), call. = FALSE)
-      list(id.var = id.var.1, time.var = time.var.1, x.vars = x.vars.1, y.vars = y.vars.1, 
+      list(id.var = id.var.1, time.var = time.var.1, x.vars = x.vars.1, y.vars = y.vars.1,
         w.vars = w.vars.1, p.vars = p.vars.1)
     } else {
       if (!(is.null(w.vars)) & is.null(p.vars)) {
@@ -99,13 +99,13 @@ check.1 <- function(data, id.var, time.var, x.vars, y.vars, w.vars, p.vars) {
 }
 
 check.2 <- function(data, id.var, time.var, x.vars, y.vars, w.vars, p.vars) {
-  if (!(is.data.frame(data))) 
+  if (!(is.data.frame(data)))
     stop("data must be a dataframe")
   names.var <- names(data)
   if (missing(id.var)) {
     stop("Missing id variable (id.var)", call. = FALSE)
   } else {
-    if (length(id.var) > 1) 
+    if (length(id.var) > 1)
       stop("Too many id variables (id.var). Only one can be defined", call. = FALSE)
     if (is.numeric(id.var)) {
       id.var.1 <- names.var[id.var]
@@ -113,13 +113,13 @@ check.2 <- function(data, id.var, time.var, x.vars, y.vars, w.vars, p.vars) {
       id.var.1 <- id.var
     }
     var_logical <- id.var.1 %in% names.var
-    if (!var_logical) 
+    if (!var_logical)
       stop("Unrecognizable variable in id.var: ", paste(id.var), call. = FALSE)
   }
   if (missing(time.var)) {
     stop("Missing time variable (time.var)", call. = FALSE)
   } else {
-    if (length(time.var) > 1) 
+    if (length(time.var) > 1)
       stop("Too many time variables (time.var). Only one can be defined", call. = FALSE)
     if (is.numeric(time.var)) {
       time.var.1 <- names.var[time.var]
@@ -127,7 +127,7 @@ check.2 <- function(data, id.var, time.var, x.vars, y.vars, w.vars, p.vars) {
       time.var.1 <- time.var
     }
     var_logical <- time.var.1 %in% names.var
-    if (!var_logical) 
+    if (!var_logical)
       stop("Unrecognizable variable in time.var:", paste(time.var), call. = FALSE)
   }
   if (missing(x.vars)) {
@@ -139,8 +139,8 @@ check.2 <- function(data, id.var, time.var, x.vars, y.vars, w.vars, p.vars) {
       x.vars.1 <- x.vars
     }
     var_logical <- x.vars.1 %in% names.var
-    if (!(all(var_logical))) 
-      stop("Unrecognizable variables in x.vars:", paste(x.vars[var_logical == F], collapse = ","), 
+    if (!(all(var_logical)))
+      stop("Unrecognizable variables in x.vars:", paste(x.vars[var_logical == F], collapse = ","),
         call. = FALSE)
   }
   if (missing(y.vars)) {
@@ -152,8 +152,8 @@ check.2 <- function(data, id.var, time.var, x.vars, y.vars, w.vars, p.vars) {
       y.vars.1 <- y.vars
     }
     var_logical <- y.vars.1 %in% names.var
-    if (!(all(var_logical))) 
-      stop("Unrecognizable variables in y.vars:", paste(y.vars[var_logical == F], collapse = ","), 
+    if (!(all(var_logical)))
+      stop("Unrecognizable variables in y.vars:", paste(y.vars[var_logical == F], collapse = ","),
         call. = FALSE)
   }
   if (missing(w.vars)) {
@@ -165,8 +165,8 @@ check.2 <- function(data, id.var, time.var, x.vars, y.vars, w.vars, p.vars) {
       w.vars.1 <- w.vars
     }
     var_logical <- w.vars.1 %in% names.var
-    if (!(all(var_logical))) 
-      stop("Unrecognizable variables in w.vars:", paste(w.vars[var_logical == F], collapse = ","), 
+    if (!(all(var_logical)))
+      stop("Unrecognizable variables in w.vars:", paste(w.vars[var_logical == F], collapse = ","),
         call. = FALSE)
   }
   if (missing(p.vars)) {
@@ -178,26 +178,26 @@ check.2 <- function(data, id.var, time.var, x.vars, y.vars, w.vars, p.vars) {
       p.vars.1 <- p.vars
     }
     var_logical <- p.vars.1 %in% names.var
-    if (!(all(var_logical))) 
-      stop("Unrecognizable variables in p.vars:", paste(p.vars[var_logical == F], collapse = ","), 
+    if (!(all(var_logical)))
+      stop("Unrecognizable variables in p.vars:", paste(p.vars[var_logical == F], collapse = ","),
         call. = FALSE)
   }
-  if (length(w.vars) != length(x.vars)) 
+  if (length(w.vars) != length(x.vars))
     stop("x.vars and w.vars must be of the same length", call. = FALSE)
-  if (length(p.vars) != length(y.vars)) 
+  if (length(p.vars) != length(y.vars))
     stop("y.vars and p.vars must be of the same length", call. = FALSE)
-  list(id.var = id.var.1, time.var = time.var.1, x.vars = x.vars.1, y.vars = y.vars.1, w.vars = w.vars.1, 
+  list(id.var = id.var.1, time.var = time.var.1, x.vars = x.vars.1, y.vars = y.vars.1, w.vars = w.vars.1,
     p.vars = p.vars.1)
 }
 
 check.3 <- function(data, id.var, time.var, x.vars, y.vars) {
-  if (!(is.data.frame(data))) 
+  if (!(is.data.frame(data)))
     stop("data must be a dataframe")
   names.var <- names(data)
   if (missing(id.var)) {
     stop("Missing id variable (id.var)", call. = FALSE)
   } else {
-    if (length(id.var) > 1) 
+    if (length(id.var) > 1)
       stop("Too many id variables (id.var). Only one can be defined", call. = FALSE)
     if (is.numeric(id.var)) {
       id.var.1 <- names.var[id.var]
@@ -205,13 +205,13 @@ check.3 <- function(data, id.var, time.var, x.vars, y.vars) {
       id.var.1 <- id.var
     }
     var_logical <- id.var.1 %in% names.var
-    if (!var_logical) 
+    if (!var_logical)
       stop("Unrecognizable variable in id.var: ", paste(id.var), call. = FALSE)
   }
   if (missing(time.var)) {
     stop("Missing time variable (time.var)", call. = FALSE)
   } else {
-    if (length(time.var) > 1) 
+    if (length(time.var) > 1)
       stop("Too many time variables (time.var). Only one can be defined", call. = FALSE)
     if (is.numeric(time.var)) {
       time.var.1 <- names.var[time.var]
@@ -219,7 +219,7 @@ check.3 <- function(data, id.var, time.var, x.vars, y.vars) {
       time.var.1 <- time.var
     }
     var_logical <- time.var.1 %in% names.var
-    if (!var_logical) 
+    if (!var_logical)
       stop("Unrecognizable variable in time.var:", paste(time.var), call. = FALSE)
   }
   if (missing(x.vars)) {
@@ -231,8 +231,8 @@ check.3 <- function(data, id.var, time.var, x.vars, y.vars) {
       x.vars.1 <- x.vars
     }
     var_logical <- x.vars.1 %in% names.var
-    if (!(all(var_logical))) 
-      stop("Unrecognizable variables in x.vars:", paste(x.vars[var_logical == F], collapse = ","), 
+    if (!(all(var_logical)))
+      stop("Unrecognizable variables in x.vars:", paste(x.vars[var_logical == F], collapse = ","),
         call. = FALSE)
   }
   if (missing(y.vars)) {
@@ -244,8 +244,8 @@ check.3 <- function(data, id.var, time.var, x.vars, y.vars) {
       y.vars.1 <- y.vars
     }
     var_logical <- y.vars.1 %in% names.var
-    if (!(all(var_logical))) 
-      stop("Unrecognizable variables in y.vars:", paste(y.vars[var_logical == F], collapse = ","), 
+    if (!(all(var_logical)))
+      stop("Unrecognizable variables in y.vars:", paste(y.vars[var_logical == F], collapse = ","),
         call. = FALSE)
   }
   list(id.var = id.var.1, time.var = time.var.1, x.vars = x.vars.1, y.vars = y.vars.1)
@@ -268,7 +268,7 @@ DO.teseme <- function(XOBS, YOBS, XREF, YREF, PRICESO, rts) {
   set.constr.type(built.lp, c(rep("<=", n_x), rep(">=", n_y)))
   set.bounds(built.lp, lower = -Inf, upper = Inf, columns = 1)
   set.rhs (built.lp, c(XOBS, rep(0, n_y)))
-  lp.control(built.lp, sense = "max") 
+  lp.control(built.lp, sense = "max")
   solve(built.lp)
   ote_crs <- 1/get.objective(built.lp)
   if (rts != "crs") {
@@ -335,7 +335,7 @@ DO.sh <- function(XOBS, YOBS, XREF, YREF, rts) {
   set.constr.type(built.lp, c(rep("<=", n_x), rep(">=", n_y)))
   set.bounds(built.lp, lower = -Inf, upper = Inf, columns = 1)
   set.rhs (built.lp, c(XOBS, rep(0, n_y)))
-  lp.control(built.lp, sense = "max") 
+  lp.control(built.lp, sense = "max")
   if (rts == "crs") {
     solve(built.lp)
     DO <- 1/get.objective(built.lp)
@@ -538,7 +538,7 @@ DO.shdu <- function(XOBS, YOBS, XREF, YREF, rts) {
   if (rts == "vrs") set.bounds(built.lp, lower = -Inf, upper = Inf, columns = n_x + n_y + 1)
   lp.control(built.lp, sense = "min")
   solve(built.lp)
-  prices_o <- get.variables(built.lp)[1:n_y]/(sum(get.variables(built.lp)[(1 + n_y):(n_y + n_x)] * XOBS) + 
+  prices_o <- get.variables(built.lp)[1:n_y]/(sum(get.variables(built.lp)[(1 + n_y):(n_y + n_x)] * XOBS) +
               if (rts == "crs") {
                 0
               } else {
@@ -592,7 +592,7 @@ DI.shdu <- function(XOBS, YOBS, XREF, YREF, rts) {
   lp.control(built.lp, sense = "max")
   solve(built.lp)
   prices_i <- get.variables(built.lp)[(n_y + 1):(n_y + n_x)]/
-    (sum(get.variables(built.lp)[1:n_y] * YOBS) + 
+    (sum(get.variables(built.lp)[1:n_y] * YOBS) +
        if (rts == "crs") {
          0
        } else {
@@ -628,52 +628,17 @@ balanced <- function(data, id.var, time.var) {
   return(balanced)
 }
 
-## Return functions (i.e. Levels(); Changes(); Shadowp())
-
-Levels <- function(object, ...) {
-  if (!is(object, c("FarePrimont", "Fisher", "Laspeyres", "Lowe", "Malmquist", "Paasche", "HicksMoorsteen"))) {
-    stop("Function 'Levels' can not be applied to an object of class \"", class(object), "\"")
-  }
-  if (is(object, c("FarePrimont", "Fisher", "Laspeyres", "Lowe", "Malmquist", "Paasche")) | (is(object, "HicksMoorsteen") & (length(object) == 2))) {
-  return(object$Levels)
-  }
-  if (is(object, "HicksMoorsteen") & (length(object) > 2)) {
-  return(lapply(object, function(x) x$Levels))
-  }
+# S3methods ----------
+#' @param x Object of class FarePrimont
+#' @noRd
+Levels <- function(x, ...) {
+  UseMethod("Levels", x)
 }
 
-Changes <- function(object, ...) {
-  if (!is(object, c("FarePrimont", "Fisher", "Laspeyres", "Lowe", "Malmquist", "Paasche", "HicksMoorsteen"))) {
-    stop("Function 'Changes' can not be applied to an object of class \"", class(object), "\"")
-  }
-  if (is(object, c("FarePrimont", "Fisher", "Laspeyres", "Lowe", "Malmquist", "Paasche")) | (is(object, "HicksMoorsteen") & (length(object) == 2))) {
-  return(object$Changes)
-  }
-  if (is(object, "HicksMoorsteen") & (length(object) > 2)) {
-  return(lapply(object, function(x) x$Changes))
-  }
+Changes <- function(x, ...) {
+  UseMethod("Changes", x)
 }
 
-
-Shadowp <- function(object, ...) {
-  if (is(object, c("Malmquist"))) {
-    stop("Function 'Shadowp' can not be applied to an object of class \"", class(object)[2], "\"")
-  }
-  if (!is(object, c("FarePrimont", "Fisher", "Laspeyres", "Lowe", "Paasche", "HicksMoorsteen"))) {
-    stop("Function 'Shadowp' can not be applied to an object of class \"", class(object), "\"")
-  }
-  if (is(object, c("FarePrimont", "Fisher", "Laspeyres", "Lowe", "Paasche")) & is.null(object$Shadowp)) {
-    stop("No shadow prices are returned in your \"", class(object)[2], "\"", " object. 
-       Specifying 'shadow = TRUE' should be considered in the function generating the \"", class(object)[2], "\"", " object.")
-  }
-  if (is(object, "HicksMoorsteen")) {
-    if (length(object) == 2) {
-      stop("No shadow prices are returned in your \"", class(object)[2], "\"", " object. 
-       Specifying 'components = TRUE' should be considered in the function generating the \"", class(object)[2], "\"", " object.")
-    } else {
-      List <- lapply(object, function(x) x$Shadowp)
-      return(List[!sapply(List,is.null)])
-    }
-  }
-  return(object$Shadowp)
+Shadowp <- function(x, ...) {
+  UseMethod("Shadowp", x)
 }
